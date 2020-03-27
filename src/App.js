@@ -12,7 +12,7 @@ import DefaultPage from "./pages/Default";
 import SingleProductPage from "./pages/SingleProductPage";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import SideCart from "./components/SideCart";
+//import SideCart from "./components/SideCart";
 import Footer from './components/Footer';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     <>
         <Navbar />
         <Sidebar />
-        <SideCart />
+       {/* <SideCart />*/}
         <Switch>
             <Route path="/" exact component={HomePage}/>
             <Route path="/about"  component={AboutPage}/>

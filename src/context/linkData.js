@@ -21,7 +21,7 @@ export const linkData = [
     },
     {
         id: 5,
-        text: 'Cart',
-        path: '/cart'
+        text: 'Chat',
+        path: '/chat'
     }
 ];

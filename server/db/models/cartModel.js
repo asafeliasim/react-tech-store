@@ -1,32 +1,18 @@
 const mongoose = require('mongoose');
 
-const cameraModel = mongoose.model('cameras',{
-    id:{
+const cart = mongoose.model('cart',{
+    phones: {
         type: Number,
-        isRequired: true
+        default:0
     },
-    title:{
-        type: String,
-        isRequired: true
-    },
-    price: {
+    cameras: {
         type: Number,
-        isRequired:true
+        default:0
     },
-    company: {
-        type: String,
-    },
-    featured:{
-        type: Boolean,
-        default: true
-    },
-    img:{
-        type: String
-    },
-    countOfBuy:{
+    computers: {
         type: Number,
-        default: 0
+        default:0
     }
 });
 
-module.exports= cameraModel;
+module.exports= cart;

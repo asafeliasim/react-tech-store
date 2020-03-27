@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const pcModel = mongoose.model('computers',{
+const productModel = mongoose.model('products',{
     id:{
         type: Number,
         isRequired: true
@@ -21,7 +21,7 @@ const pcModel = mongoose.model('computers',{
         default: true
     },
     img:{
-        type: String
+        type: String,
     },
     countOfBuy:{
         type: Number,
@@ -29,4 +29,4 @@ const pcModel = mongoose.model('computers',{
     }
 });
 
-module.exports= pcModel;
+module.exports= productModel;
