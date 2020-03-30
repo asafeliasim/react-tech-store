@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link} from 'react';
-import {FaCartPlus,FaMobileAlt} from "react-icons/fa";
+
+import {FaMobileAlt,FaHeart} from "react-icons/fa";
 import {ProductConsumer} from "../context";
-import SingleProductPage from "../pages/SingleProductPage";
+import {FacebookProvider, Share, Like, Comments,Feed,EmbeddedPost} from 'react-facebook';
 
 
 export default function Product({product}) {
@@ -19,7 +19,6 @@ return <ProductConsumer>
             <div className="card">
                 <div className="image-container">
                 <figure className="image-container">
-                  {/*   <Link to={SingleProductPage}>*/}
                                 <img
                                     src={product.img}
                                     className="card-img-top p-5"
@@ -27,12 +26,19 @@ return <ProductConsumer>
                                     style={{height: '300px'}}
                                 >
                                 </img>
-                     {/*</Link>*/}
                 </figure>
 
                 <div className="product-icon">
                {/* <FaCartPlus className="icon"/>*/}
-                <FaMobileAlt className="icon"/>
+                    <FacebookProvider appId="1290048377862322">
+
+                        <Comments href="https://www.facebook.com/asaf.eliasim"/>
+                     {/*   <Share href="https://www.facebook.com/asaf.eliasim">
+                            {({handleClick,loading})=>(
+                                <button type="button" display={loading} onClick={handleClick}><FaHeart className="icon"/></button>
+                            )}
+                        </Share>*/}
+                    </FacebookProvider>
             </div>
         </div>
           <div className="card-body d-flex justify-content-between">

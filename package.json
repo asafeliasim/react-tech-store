@@ -23,6 +23,8 @@
     "react-bootstrap": "^1.0.0",
     "react-chat-window": "^1.2.1",
     "react-dom": "^16.13.0",
+    "react-facebook": "^8.1.4",
+    "react-google-maps": "^9.4.5",
     "react-icons": "^3.9.0",
     "react-image": "^2.4.0",
     "react-router-dom": "^5.1.2",

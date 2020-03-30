@@ -66,20 +66,20 @@ const server = app.listen(PORT,()=>{
    console.log(__dirname)
 });
 
-/*Socket-io chat*/
+//Socket-io chat
+/*
 const socketIo = require('socket.io');
 const io = socketIo(server);
 
-/*io.on("connection", socket => {
+io.on("connection", socket => {
    // eslint-disable-next-line no-unused-expressions,no-sequences
    console.log("New client connected"), setInterval(
        () => getApiAndEmit(socket),
-       500
+       10000
    );
    socket.on("disconnect", () => console.log("Client disconnected"));
-});*/
+});
 //TODO: need file to hold the variables
-/*
 const axios = require('axios');
 const apiDarkSky = "https://api.darksky.net/forecast/a03cfddadcdac235785db2773ca94c95/32.0722,34.8089";
 
@@ -93,4 +93,5 @@ const getApiAndEmit = async socket =>{
  }catch (e) {
     console.error(`Error: ${e.code}`);
  }
-};*/
+};
+*/
