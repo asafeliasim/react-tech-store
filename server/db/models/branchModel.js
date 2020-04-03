@@ -7,6 +7,12 @@ const branch = mongoose.model('branches',{
     address:{
         type: String,
         required:true
+    },
+    latitude:{
+        type: Number
+    },
+    longitude:{
+        type:Number
     }
 });
 

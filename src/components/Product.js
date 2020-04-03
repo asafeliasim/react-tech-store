@@ -30,15 +30,7 @@ return <ProductConsumer>
 
                 <div className="product-icon">
                {/* <FaCartPlus className="icon"/>*/}
-                    <FacebookProvider appId="1290048377862322">
 
-                        <Comments href="https://www.facebook.com/asaf.eliasim"/>
-                     {/*   <Share href="https://www.facebook.com/asaf.eliasim">
-                            {({handleClick,loading})=>(
-                                <button type="button" display={loading} onClick={handleClick}><FaHeart className="icon"/></button>
-                            )}
-                        </Share>*/}
-                    </FacebookProvider>
             </div>
         </div>
           <div className="card-body d-flex justify-content-between">

@@ -29,7 +29,7 @@ router.get('/branches', async (req,res)=>{
 });
 router.patch('/branch/:address',async(req,res)=>{
     const updates = Object.keys(req.body);
-    const allowsUpdates = 'address';
+    const allowsUpdates = ['address','latitude','longitude'];
     const isValidOperation  = updates.every((update)=> allowsUpdates.includes(update));
     const _address = req.params.address;
     if(!isValidOperation){
