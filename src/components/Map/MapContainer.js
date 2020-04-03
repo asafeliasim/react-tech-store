@@ -1,3 +1,15 @@
+import axios from 'react';
+import React from 'react';
+
+export default class MapContainer{
+    state={
+        branches: axios.get('http://localhost:3001/branches')
+    }
+
+}
+
+
+/*
 import React,{Component} from 'react';
 import {Map,InfoWindow,GoogleApiWrapper} from "google-maps-react";
 import axios from 'axios';
@@ -40,7 +52,7 @@ export class MapContainer extends Component {
                 </Marker>
             </ReactMapGL>
         )
-         /* return(
+         /!* return(
          <div className="map">
            <ReactBingmaps
              bingmapKey="AnfCjbtW1vdOZwBMCsn4D7nfV7WOR72Inv3vnd-jX8xYETed-u4eBFHzsblAw6-K"
@@ -51,8 +63,8 @@ export class MapContainer extends Component {
              >
              </ReactBingmaps>
          </div>
-         );*/
-     /*   const markerTemplate = this.state.coordinates.map((c,index)=>
+         );*!/
+     /!*   const markerTemplate = this.state.coordinates.map((c,index)=>
             <Marker
                 key={index}
                 position={{lat: c.latitude, lng: c.longitude}}
@@ -70,7 +82,7 @@ export class MapContainer extends Component {
 
                 {markerTemplate}
             </Map>
-        );*/
+        );*!/
     }
 
 }
@@ -78,3 +90,4 @@ export class MapContainer extends Component {
 export default GoogleApiWrapper({
     apiKey:"AIzaSyDCMcM8ZeU8sg3d9MwjPMYIzahdEmzgd9c"
 })(MapContainer)
+*/
