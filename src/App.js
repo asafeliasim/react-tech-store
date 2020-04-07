@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 //import SideCart from "./components/SideCart";
 import Footer from './components/Footer';
+import ChatPage from "./pages/ChatPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/products" exact component={ProductsPage}/>
             <Route path="/" exact component={SingleProductPage}/>
             <Route path="/products/:id" exact component={SingleProductPage}/>
+            <Route path="/chat" exact component={ChatPage}/>
             <Route component={DefaultPage}/>
         </Switch>
         <Footer />

@@ -61,10 +61,28 @@ app.get('/geocode/:address', (req, res) => {
 });
 
 
+
 const server = app.listen(PORT,()=>{
    console.log(`server connect is PORT: ${PORT} `);
    console.log(__dirname)
 });
+
+//Socket setup
+const socketIO = require('socket.io');
+const io = socketIO(server);
+
+io.on("connection",socket=>{
+   console.log('made socket connection',socket.id);
+
+   socket.on('chat',data=>{
+      io.sockets.emit('chat',data);
+   });
+   socket.on('typing',data=>{
+      socket.broadcast.emit('typing',data);
+   })
+
+});
+
 
 //Socket-io chat
 /*

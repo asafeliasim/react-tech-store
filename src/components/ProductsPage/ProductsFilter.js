@@ -9,7 +9,7 @@ export default function ProductsFilter(){
         {
           value=>{
             const{search,min,max,company,price,handleChange,storedProducts} = value;
-            let companies = new Set()
+            let companies = new Set();
             companies.add('all');
             for(let index in storedProducts){
               companies.add(storedProducts[index]["company"])

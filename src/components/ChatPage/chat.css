@@ -1,0 +1,22 @@
+.tech-chat{
+    height: 55vh;
+}
+#handler{
+    color: var(--primaryColor);
+}
+.message{
+    border-bottom: 1px solid darkgray;
+}
+.message-input{
+    width: 70vw;
+}
+.btn-send{
+    width: 70vw;
+    background-color: var(--primaryColor);
+    color: white;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.message-box{
+    width: 70vw;
+}

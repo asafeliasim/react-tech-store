@@ -28,10 +28,9 @@
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "path": "^0.12.7",
-    "request": "^2.88.2",
+    "request": "latest",
     "socket-io": "^1.0.0",
-    "validator": "^12.2.0",
-    "request": "latest"
+    "validator": "^12.2.0"
   },
   "devDependencies": {
     "socket.io": "^2.3.0"
