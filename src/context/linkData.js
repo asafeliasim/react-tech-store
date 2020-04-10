@@ -23,5 +23,10 @@ export const linkData = [
         id: 5,
         text: 'Chat',
         path: '/chat'
+    },
+    {
+        id: 6,
+        text: 'Best sell',
+        path: '/d3BestSell'
     }
 ];

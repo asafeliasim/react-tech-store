@@ -148,6 +148,15 @@ class ProductProvider extends Component {
     closeCart = () => {
       this.setState({cartOpen:false})
     };
+    handleCountOfProduct = item => {
+        item.countOfBuy = item.countOfBuy+1;
+
+        axios.patch(`http://localhost:3001/product/${item.title}`,{
+            'countOfBuy': item.countOfBuy
+        }).then(res=>{
+            console.log(res);
+        })
+    };
 
     render() {
         return(
@@ -161,7 +170,8 @@ class ProductProvider extends Component {
                     //incrementCart: this.increment,
                     //decrement: this.decrement,
                     //clearCart: this.closeCart
-                    handleChange:this.handleChange
+                    handleChange:this.handleChange,
+                    handleCountOfProduct: this.handleCountOfProduct
 
                 }}>
                {this.props.children}

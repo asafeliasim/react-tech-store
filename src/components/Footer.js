@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import {ProductConsumer} from "../context";
 import {FaComments} from "react-icons/fa";
-import { FacebookProvider, Share,CommentsCount} from "react-facebook";
+import { FacebookProvider, Share,MessageUs,CommentsCount} from "react-facebook";
+//import MessengerSendToMessenger from 'react-messenger-send-to-messenger'
+/*106337837701034*/
+
 export default function Footer() {
     return(
         <ProductConsumer>
@@ -17,9 +20,12 @@ export default function Footer() {
                             </div>
                             <div className="col-md-6 d-flex justify-content-around">
                                 <FacebookProvider appId="1290048377862322">
+                                    <MessageUs messengerAppId="1290048377862322" pageId="106337837701034" target="_blank">
 
-                                    {/*<Comments href="https://www.facebook.com/asaf.eliasim"/>*/}
-                                    <Share href="https://www.facebook.com/asafeliasim">
+                                    </MessageUs>
+
+
+                                  {/*  <Share href="https://www.facebook.com/asafeliasim">
                                         {({handleClick,loading})=>(
                                             <button type="button" className="btn btn-primary" display={loading} onClick={handleClick}>
                                                 <FaComments />
@@ -28,8 +34,9 @@ export default function Footer() {
                                     </Share>
                                    <CommentsCount
                                     href="https://www.facebook.com/asafeliasim"
-                                   />
+                                   />*/}
                                 </FacebookProvider>
+
                                 {value.socialIcons.map(item=> <a href={item.url} key={item.id}>{item.icon}</a>)}
                             </div>
 

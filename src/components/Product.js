@@ -1,19 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {FaMobileAlt,FaHeart} from "react-icons/fa";
+import {FaHeart} from "react-icons/fa";
 import {ProductConsumer} from "../context";
-import {FacebookProvider, Share, Like, Comments,Feed,EmbeddedPost} from 'react-facebook';
-
 
 export default function Product({product}) {
-console.log(product.img);
-    //const images = [img1,img2,img3];
+
 return <ProductConsumer>
 
     {
         value=>{
-            const {addToCart,setSingleProduct} = value;
+            const {handleCountOfProduct} = value;
         return (
         <ProductWrapper className="col-10 mx-auto col-sm-8 col-md-6 col-lg-4 my-3">
             <div className="card">
@@ -29,8 +26,7 @@ return <ProductConsumer>
                 </figure>
 
                 <div className="product-icon">
-               {/* <FaCartPlus className="icon"/>*/}
-
+                    <FaHeart className="icon" onClick={()=>handleCountOfProduct(product)}/>
             </div>
         </div>
           <div className="card-body d-flex justify-content-between">

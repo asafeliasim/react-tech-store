@@ -11,6 +11,7 @@
     "bootstrap": "^4.4.1",
     "cookie-parser": "^1.4.5",
     "currently": "0.0.8",
+    "d3": "^5.15.1",
     "express-session": "^1.17.0",
     "google-maps-react": "^2.0.2",
     "i": "^0.3.6",
@@ -30,8 +31,10 @@
     "react-icons": "^3.9.0",
     "react-image": "^2.4.0",
     "react-map-gl": "^5.2.3",
+    "react-messenger-send-to-messenger": "^0.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-spring": "^8.0.27",
     "styled-components": "^5.0.1"
   },
   "scripts": {

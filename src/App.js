@@ -13,6 +13,7 @@ import SingleProductPage from "./pages/SingleProductPage";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 //import SideCart from "./components/SideCart";
+import D3DiagramPage from "./pages/D3diagramPage";
 import Footer from './components/Footer';
 import ChatPage from "./pages/ChatPage";
 
@@ -31,6 +32,7 @@ function App() {
             <Route path="/" exact component={SingleProductPage}/>
             <Route path="/products/:id" exact component={SingleProductPage}/>
             <Route path="/chat" exact component={ChatPage}/>
+            <Route path="/d3BestSell" component={D3DiagramPage}/>
             <Route component={DefaultPage}/>
         </Switch>
         <Footer />
