@@ -13,7 +13,7 @@ export default function Title({title,center}){
     )
 }
 
-const TitleWrapper = styled.div`
+    const TitleWrapper = styled.div`
   text-align: ${props=> props.center? "center":"left"};
   .title-underline{
   height: 0.25rem;

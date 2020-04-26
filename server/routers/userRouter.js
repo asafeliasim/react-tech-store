@@ -1,7 +1,11 @@
 const express = require('express');
 const User = require('../db/models/userModel');
 const auth = require('../middleware/auth');
-const router =new express.Router();
+const passport = require('passport');
+const Strategy = require('passport-local').Strategy;
+const session = require('express-session');
+const flash = require('connect-flash');
+const router = new express.Router();
 
 
 // Create user - Post
@@ -10,21 +14,40 @@ const router =new express.Router();
 // Get users -
 // Updated user
 
+passport.use(new Strategy(
+    (username,passport,done)=>{
+        User.findOne({username},(err,user)=>{
+            if(err){
+                return done(err)
+            }
+            if(!user){
+                done(null,false);
+            }
+            if(user.password !== password){
+                return done(null,false);
+            }
 
-//sign-in
-/*router.get('/sign-in',(req, res) => {
+            return done(null,user);
+        })
+    }
+));
 
-});*/
-
-
-
-router.get('/user/me',auth,async (req,res)=>{
-   res.send(req.user);
+passport.serializeUser((user,done)=>{
+   done(null,user._id);
 });
 
+passport.deserializeUser((id,done)=>{
+   done(null,{id});
+});
 
-
-
+router.use(session({
+    secret : 'session secret',
+    resave : false,
+    saveUninitialized: false
+}));
+router.use(passport.initialize());
+router.use(passport.session());
+router.use(flash());
 router.post('/user',async (req,res)=>{
     const user = new User(req.body);
     try{

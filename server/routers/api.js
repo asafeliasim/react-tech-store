@@ -18,14 +18,6 @@ router.get('/productsApi',async (req,res)=>{
         res.status(404).send(e);
     }
 });
-/*
-const upload = multer({
-    dest: 'images'
-});
-router.post('/products/:title/Buffer',upload.single('upload'),async(req, res) =>{
-    req.body.title = req.file.buffer
-    res.send();
-});
-*/
+
 
 module.exports = router;

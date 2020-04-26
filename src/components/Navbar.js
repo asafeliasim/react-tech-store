@@ -1,10 +1,35 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import {FaBars} from 'react-icons/fa';
 import styled from 'styled-components';
 import {ProductConsumer} from "../context";
 import logo from '../images/logo.svg'
+import AuthContext from "../context/auth/AuthContext";
 
-export default function Navbar() {
+const Navbar = ()=>{
+    const authContext = useContext(AuthContext);
+    const {isAuthenticated,logout,user} = authContext;
+
+    const onLogout = () => {
+      logout();
+    };
+    const authLinks = (
+      <div className="user-link">
+            <a  onClick={onLogout} href="#!">
+                <h3>Logout</h3>
+            </a>
+      </div>
+    );
+    const guestLinks = (
+        <>
+            <div className="user-link">
+                <a href="/register"><h3>Register</h3></a>
+            </div>
+            <div className="user-link">
+                <a href="/login"><h3>Login</h3></a>
+              </div>
+        </>
+    );
+
     return(
         <ProductConsumer>
             {value=> {
@@ -12,17 +37,21 @@ export default function Navbar() {
                 return <NavWrapper>
                     <div className="nav-center">
                         <FaBars className="nav-icon" onClick={handleSideBar}/>
+                        {isAuthenticated? authLinks: guestLinks}
+
                         <img src={logo} alt="tech store logo"/>
                       {/*  <div className="row">
                             <button style={{padding:"20px", color:" #222",border:"none",background:"#fafafa",transition:"all 0.3s ease-in-out"}}>Sign In</button>
                             <button style={{padding:"20px", color:" #222",border:"none",background:"#fafafa",transition:"all 0.3s ease-in-out"}}>Sign up</button>
                         </div>*/}
+
                     </div>
                 </NavWrapper>
             }}
         </ProductConsumer>
     )
-}
+};
+
 const NavWrapper = styled.nav`
   position: -webkit-sticky;
   position: sticky;
@@ -53,4 +82,19 @@ const NavWrapper = styled.nav`
     padding: 0 5px;
     border-radius: 50%;
    }
+   .user-link a{
+     text-decoration: none!important;
+     color: var(--mainBlack)!important;
+     transition: all 0.2s ease-in-out;
+   }
+   h3:hover{
+      background: var(--primaryColor)!important;
+   }
+   .user-link a:hover{
+    color: var(--mainWhite)!important;
+   }
+   h3{
+    font-family: 'Open Sans', sans-serif;
+   }
  `;
+export default Navbar;

@@ -12,19 +12,28 @@ import DefaultPage from "./pages/Default";
 import SingleProductPage from "./pages/SingleProductPage";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-//import SideCart from "./components/SideCart";
 import D3DiagramPage from "./pages/D3diagramPage";
 import Footer from './components/Footer';
 import ChatPage from "./pages/ChatPage";
+import Register from "./components/Users/Register";
+import Login from "./components/Users/Login";
+import AuthState from "./context/auth/AuthState";
+import setAuthToken from "./utils/setAuthToken";
 
+if(localStorage.token){
+    setAuthToken(localStorage.token);
+}
 function App() {
   return (
     <>
+        <AuthState>
         <Navbar />
         <Sidebar />
        {/* <SideCart />*/}
         <Switch>
             <Route path="/" exact component={HomePage}/>
+            <Route path="/register" exact component={Register}/>
+            <Route path="/login" exact component={Login}/>
             <Route path="/about"  component={AboutPage}/>
             <Route path="/contact"  component={ContactPage}/>/>
             <Route path="/cart"  component={CartPage}/>/>
@@ -36,6 +45,7 @@ function App() {
             <Route component={DefaultPage}/>
         </Switch>
         <Footer />
+        </AuthState>
     </>
 
   );

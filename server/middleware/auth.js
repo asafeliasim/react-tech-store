@@ -1,28 +1,18 @@
 const jwt = require('jsonwebtoken');
-const User = require('../db/models/userModel');
 
-// find a user with the same id that have the current token
-const auth = async (req,res,next) => {
+module.exports = function (req,res,next) {
+    //Get token from header
+    const token = req.header('x-auth-token');
+
+    //Check if not token
+    if(!token){
+        return res.status(401).json({msg:'No token authorization denied'})
+    }
     try{
-        const token = req.header('Authorization').replace('Bearer ', '');
-
-        const decode = jwt.verify(token,'thisIsCurrentUser');
-      //  console.log(decode);
-
-        const user = await User.findOne({ _id: decode._id, 'tokens.token': token});
-       // console.log(user._id,user.tokens);
-        if(!user){
-            throw new Error('user not found');
-        }
-        req.token = token;
-        req.user = user;
-        console.log('Authorization is good');
+        const decode = jwt.verify(token,'user_secret_token');
+        req.user = decode.user;
         next();
     }catch (e) {
-        res.status(401).send({error:'Please authenticate.'})
+        res.status(500).json({msg:'Token is not valid!'})
     }
-
 };
-
-
-module.exports = auth;

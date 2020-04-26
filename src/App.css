@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
 
 :root{
  --primaryColor: #5fb7ea;
@@ -23,7 +24,6 @@
 body{
   font-family: 'Open Sans', sans-serif!important;
   background: var(--mainGray) !important;
-
 }
 .main-link{
     padding: 0.5rem 1rem;
@@ -43,3 +43,9 @@ body{
     color: var(--primaryColor);
     outline-color: var(--darkGray);
 }
+div{
+    font-family: 'Manrope', sans-serif;;
+}
+
+
+

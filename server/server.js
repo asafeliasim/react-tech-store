@@ -5,10 +5,14 @@ const bodyParser = require('body-parser');
 const geocode = require('./routers/geocode/geocode');
 /*models routers*/
 const UserRouter = require('./routers/userRouter');
+const user = require('./routers/userRoute');
+const auth = require('./routers/auth');
 const ProductRouter = require('./routers/productRouter');
-const CartRouter = require('./routers/cartRouter');
+
 const apiRouter = require('./routers/api');
 const BranchRouter = require('./routers/branchRouter');
+
+
 /*end of models routers*/
 //const socketListener = require('./sockets/socketIO');
 
@@ -34,10 +38,10 @@ app.use(cookieParser());
 
 app.use(UserRouter);
 app.use(ProductRouter);
-app.use(CartRouter);
 app.use(apiRouter);
 app.use(BranchRouter);
-
+app.use(user);
+app.use(auth);
 app.use(express.static('public'));
 app.use(express.static('files'));
 app.use('/static', express.static('public'));
@@ -56,9 +60,12 @@ app.get('/geocode/:address', (req, res) => {
          return res.send({ error: err })
       }
       console.log(address);
-      res.send({ longitude, latitude});
+      res.send
+      ({ longitude, latitude});
    })
 });
+
+/* login and sign in*/
 
 
 

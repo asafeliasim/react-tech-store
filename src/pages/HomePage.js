@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useContext,useEffect} from 'react';
 import Hero from "../components/Hero";
 import {Link} from 'react-router-dom'
 import Services from '../components/HomePage/Services';
 import Features from '../components/HomePage/Featured';
 import Weather from "../components/Weather";
-
-export default function HomePage() {
+import AuthContext from "../context/auth/AuthContext";
+const HomePage=()=> {
+    const authContext = useContext(AuthContext);
+    useEffect(()=>{
+        authContext.loadUser();
+        //eslint-disable-next-line
+    },[]);
     return(
         <>
             <Hero title="awesome gadgets" max='true'>
@@ -20,4 +25,5 @@ export default function HomePage() {
 
         </>
     )
-}
+};
+export default HomePage;

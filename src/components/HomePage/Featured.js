@@ -20,7 +20,7 @@ export default function Featured() {
                    </div>
                 <div className="row mt-5">
                     <div className="col text-center">
-                        <Link to="/products" className="main-link" style={{"display": "inline-block"}} >
+                        <Link to="/products" className="main-link" style={{"display": "inline-block","border-radius":"10px"}} >
                             Our products
                         </Link>
                     </div>
