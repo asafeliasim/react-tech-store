@@ -56,7 +56,7 @@ class ProductProvider extends Component {
     setProducts=(products)=>{
         let storedProducts = products.map((item)=>{
            const {id} = item.id;
-           const product = {id,...item}
+           const product = {id,...item};
            return product
         });
         let maxPrice = Math.max(...storedProducts.map(item=> item.price));
@@ -166,10 +166,6 @@ class ProductProvider extends Component {
                     handleCart: this.handleCart,
                     closeCart: this.closeCart,
                     openCart: this.openCart,
-                    //addToCart: this.addToCart,
-                    //incrementCart: this.increment,
-                    //decrement: this.decrement,
-                    //clearCart: this.closeCart
                     handleChange:this.handleChange,
                     handleCountOfProduct: this.handleCountOfProduct
 

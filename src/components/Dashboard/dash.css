@@ -1,0 +1,13 @@
+.products-card-list{
+    list-style: none;
+    width: 100%;
+}
+.product-card{
+    color: #222222;
+    font-weight: bold;
+    margin: 5px 5px auto;
+}
+.product-title{
+    font-weight: bold;
+    text-decoration: underline;
+}

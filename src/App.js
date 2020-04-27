@@ -19,6 +19,9 @@ import Register from "./components/Users/Register";
 import Login from "./components/Users/Login";
 import AuthState from "./context/auth/AuthState";
 import setAuthToken from "./utils/setAuthToken";
+import AlertState from "./context/alert/AlertState";
+import Alerts from "./components/Alerts";
+import AdminDashboard from "./components/Dashboard/AdminDashboard";
 
 if(localStorage.token){
     setAuthToken(localStorage.token);
@@ -27,11 +30,13 @@ function App() {
   return (
     <>
         <AuthState>
+        <AlertState>
         <Navbar />
         <Sidebar />
-       {/* <SideCart />*/}
+        <Alerts />
         <Switch>
             <Route path="/" exact component={HomePage}/>
+            <Route path="/dashboard" exact component={AdminDashboard}/>
             <Route path="/register" exact component={Register}/>
             <Route path="/login" exact component={Login}/>
             <Route path="/about"  component={AboutPage}/>
@@ -45,6 +50,7 @@ function App() {
             <Route component={DefaultPage}/>
         </Switch>
         <Footer />
+        </AlertState>
         </AuthState>
     </>
 

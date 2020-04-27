@@ -1,4 +1,5 @@
 import{
+    AUTH_ERROR,
     SET_CURRENT,
     CLEAR_CURRENT,
     REGISTER_SUCCESS,
@@ -28,6 +29,7 @@ export default (state,action) => {
               loading: false
             };
         case REGISTER_FAIL:
+        case AUTH_ERROR:
         case LOGIN_FAIL:
         case LOGOUT:
             //@todo auth error alert

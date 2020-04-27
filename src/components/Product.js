@@ -17,7 +17,7 @@ return <ProductConsumer>
                 <div className="image-container">
                 <figure className="image-container">
                                 <img
-                                    src={product.img}
+                                    src = {product.img}
                                     className="card-img-top p-5"
                                     alt="product"
                                     style={{height: '300px'}}

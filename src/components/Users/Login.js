@@ -2,27 +2,28 @@ import React,{useState,useContext,useEffect} from 'react';
 import Hero from '../Hero';
 import {Form,Button} from 'react-bootstrap';
 import AuthContext from "../../context/auth/AuthContext";
-
+import AlertContext from "../../context/alert/alertContext";
 const Login=(props)=>{
 
     const authContext= useContext(AuthContext);
+    const alertContext = useContext(AlertContext);
     const{login,error,isAuthenticated,isAdmin} = authContext;
-
+    const {setAlert} = alertContext;
     useEffect(()=>{
         //@todo - addition to state isAdmin
 
-        if(isAuthenticated && isAdmin){
+        if(error === 'Invalid Credentials'){
+            setAlert(error,'danger');
+        }
+        else if(isAuthenticated && email === 'asaf@gmail.com'){
             props.history.push('/dashboard');
         }
 
-        if(isAuthenticated){
+        else if(isAuthenticated && !isAdmin){
             props.history.push('/');
         }
-        if(error === 'Invalid Credentials'){
-            throw error;
-        }
 
-    },[error,isAuthenticated,props.history]);
+    },[error,isAuthenticated,isAdmin,props.history]);
     const[user,setUser]= useState({
        email:'',
        password:''
@@ -33,7 +34,7 @@ const Login=(props)=>{
     const onSubmit = e => {
       e.preventDefault();
       if(email === '' || password === ''){
-         console.log('Please fill in all fields');
+         setAlert('Please fill in all fields','danger');
       }else{
           login({
              email,
@@ -43,7 +44,6 @@ const Login=(props)=>{
     };
     return(
         <>
-            <Hero title="Login"/>
             <Form className="w-75 h-100 mx-auto my-5">
                 <Form.Group controlId="formGroupEmail">
                     <Form.Label>Email</Form.Label>
@@ -57,6 +57,7 @@ const Login=(props)=>{
                     Login
                 </Button>
             </Form>
+            <Hero title="Login"/>
         </>
     )
 };

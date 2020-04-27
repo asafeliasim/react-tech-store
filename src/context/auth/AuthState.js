@@ -4,6 +4,7 @@ import authReducer from './authReducer';
 import axios from 'axios';
 import setAuthToken from "../../utils/setAuthToken";
 import{
+    AUTH_ERROR,
     SET_CURRENT,
     CLEAR_CURRENT,
     REGISTER_SUCCESS,
@@ -39,7 +40,7 @@ const AuthState = props => {
             });
         }catch(err){
             //@todo - dispatch alertError
-            console.log({err: err.message});
+            dispatch({type:AUTH_ERROR})
         }
     };
     //Register User
