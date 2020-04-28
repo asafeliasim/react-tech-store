@@ -15,7 +15,7 @@ const Login=(props)=>{
         if(error === 'Invalid Credentials'){
             setAlert(error,'danger');
         }
-        else if(isAuthenticated && email === 'asaf@gmail.com'){
+        if(email === 'asafeliasim@gmail.com'){
             props.history.push('/dashboard');
         }
 
@@ -36,6 +36,7 @@ const Login=(props)=>{
       if(email === '' || password === ''){
          setAlert('Please fill in all fields','danger');
       }else{
+          console.log(email);
           login({
              email,
              password

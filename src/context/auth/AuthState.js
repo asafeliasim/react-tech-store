@@ -5,6 +5,7 @@ import axios from 'axios';
 import setAuthToken from "../../utils/setAuthToken";
 import{
     AUTH_ERROR,
+    UPDATE_PRODUCT,
     SET_CURRENT,
     CLEAR_CURRENT,
     REGISTER_SUCCESS,
@@ -71,8 +72,9 @@ const AuthState = props => {
     const login = async formData => {
         try{
             console.log('try to post to server');
-            const res = await axios.post("/api/login",formData);
-            console.log(res.body);
+            console.log(formData);
+            const res = await axios.post("http://localhost:3001/api/login",formData);
+
             dispatch({
                 type:REGISTER_SUCCESS,
                 payload:res.data//---> return the token
@@ -87,6 +89,23 @@ const AuthState = props => {
             });
         }
     };
+    const updateProduct = async product => {
+        const form = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        try{
+            const res = await axios.put(`http://localhost:3001/api/update/${product._id}`,product,form);
+            dispatch({
+                type: UPDATE_PRODUCT,
+                payload: res.data
+            })
+        }catch (e) {
+
+        }
+
+    };
     //Logout
     const logout = () =>{
         dispatch({
@@ -94,6 +113,7 @@ const AuthState = props => {
         })
     };
     //Clear Errors
+
     const clearErrors = () =>{
         console.log("Clear errors");
     };
@@ -110,7 +130,8 @@ const AuthState = props => {
                 loadUser,
                 login,
                 logout,
-                clearErrors
+                clearErrors,
+                updateProduct
             }}
         >
             {props.children}

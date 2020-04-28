@@ -2,9 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const Product = require('../db/models/productModel');
 const router = new express.Router();
+const fs = require('file-system');
 
 router.use(cors());
 router.post('/product',async (req,res) => {
+   console.log(req.body);
    const product = await new Product(req.body);
    try{
       product.save();
@@ -14,7 +16,11 @@ router.post('/product',async (req,res) => {
    }
 
 });
+router.post('/product/img',async (req,res)=>{
+   const img = req.body;
+   fs.writeFileSync('img',img);
 
+});
 router.get('/product/:title',async(req,res)=>{
    const _title = req.params.title;
    try{
@@ -39,6 +45,8 @@ router.get('/products', async (req,res)=>{
    }
 });
 router.patch('/product/:title',async(req,res)=>{
+   console.log(req.body);
+
    const updates = Object.keys(req.body);
    const allowsUpdates = ['id','title','price','company','featured','img','countOfBuy'];
    const isValidOperation  = updates.every((update)=> allowsUpdates.includes(update));
@@ -67,5 +75,28 @@ router.delete('/product/:title', async (req,res)=>{
 });
 router.get('/img/:path',(req, res) => {
    res.send(req);
+});
+
+router.put("/api/update/:id",async(req,res)=>{
+   const {title,company,price} = req.body;
+   const productFields = {};
+   if(title) productFields.title = title;
+   if(company) productFields.company = company;
+   if(price) productFields.price = price;
+
+   try{
+      let product = await Product.findById(req.params.id);
+      if(!product){
+         res.status(400).json({msg:'product not found'});
+      }
+      product = await Product.findByIdAndUpdate(req.params.id,
+          {$set: productFields},
+          {new: true}
+         );
+      res.json(product);
+   }catch (e) {
+      console.log(e.message);
+      res.status(500).send('Server error');
+   }
 });
 module.exports = router;

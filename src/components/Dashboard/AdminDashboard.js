@@ -1,13 +1,21 @@
-import React,{Component} from 'react';
+import React,{Component,useContext} from 'react';
 import axios from 'axios';
-import {Card,Container,Row,Col,Form} from 'react-bootstrap';
+import {Card,Container,Row,Col,Form,Button} from 'react-bootstrap';
+import Popup from 'reactjs-popup';
 
 import './dash.css';
 
 class AdminDashboard extends Component{
     state={
-        products:[]
+        products:[],
+        id: Number,
+        title:'',
+        company:'',
+        price: Number,
+        featured: Boolean,
+        selectedFile: null
     };
+
     componentDidMount() {
         axios.get('http://localhost:3001/productsApi')
             .then((resp) => {
@@ -17,8 +25,10 @@ class AdminDashboard extends Component{
             }).then(()=>{
             this.state.storedProducts= this.setProducts(this.state.products);
             console.log(this.state.storedProducts);
-        })
+        });
+
     }
+
     setProducts=(products)=>{
         let storedProducts = products.map((item)=>{
             const {id} = item.id;
@@ -31,11 +41,61 @@ class AdminDashboard extends Component{
     };
 
     //Delete item
-
+    async deleteProduct(title){
+        console.log(title);
+        await axios.delete(`http://localhost:3001/product/${title}`);
+        console.log('Product deleted');
+        return;
+    };
     //Edit item
+    changeFieldProduct=(e)=>{
+        const change = e.target.value;
+        this.setState({[e.target.name]: change});
 
+        console.log(change);
+        e.preventDefault();
+    };
+    async submitEditProduct(product) {
+
+        const title = this.state.title ? this.state.title : product.title;
+        const company = this.state.company ? this.state.company : product.company;
+        const price = this.state.price ? this.state.price : product.price;
+        const req = {
+          title,
+          company,
+          price
+        };
+        const res = await axios.patch(`http://localhost:3001/product/${product.title}`,req);
+        console.log(res);
+    }
     //Create Item
-
+    initProductField=(e)=>{
+        this.setState({[e.target.name]:e.target.value});
+        console.log(e.target.value);
+        e.preventDefault();
+    };
+    async createProduct(){
+      const id = this.state.id;
+      const title = this.state.title;
+      const company = this.state.company;
+      const price = this.state.price;
+      const img = `../img/${this.state.title}.jpg`;
+      const product = {
+          id,
+          title,
+          company,
+          price,
+          img
+      };
+      console.log(product);
+    const p = await axios.post(`http://localhost:3001/product`,product);
+    console.log(p);
+    };
+    fileSelectedHandler = e => {
+      this.setState({
+          selectedFile: e.target.files[0]
+      })
+    };
     render() {
         console.log(this.state);
         return(
@@ -54,8 +114,39 @@ class AdminDashboard extends Component{
                                                 <p>$ {product.price}</p>
                                             </Card.Text>
                                             <Card.Footer>
-                                                <button type="button" className="btn btn-primary mr-4">Edit</button>
-                                                <button type="button" className="btn btn-danger">Delete</button>
+                                                <Popup trigger={<button type="button" className="btn btn-primary mr-4">Edit</button>}
+                                                       position="right center">
+                                                    <Form className="popup">
+                                                        <Form.Group as={Row} controlId="title">
+                                                                <Form.Control type="text"
+                                                                              placeholder="title"
+                                                                              name="title"
+                                                                              onChange={this.changeFieldProduct}/>
+                                                        </Form.Group>
+                                                        <Form.Group as={Row} controlId="company">
+                                                                <Form.Control type="text"
+                                                                              placeholder="company"
+                                                                              name="company"
+                                                                              onChange={this.changeFieldProduct}/>
+                                                        </Form.Group>
+                                                        <Form.Group as={Row} controlId="price">
+                                                                <Form.Control type="number"
+                                                                              placeholder="price"
+                                                                              name="price"
+                                                                              onChange={this.changeFieldProduct}/>
+                                                        </Form.Group>
+                                                        <Button type="submit"
+                                                                className="btn btn-primary text-uppercase w-100"
+                                                                onClick={()=>this.submitEditProduct(product)}
+                                                        >
+                                                            edit
+                                                        </Button>
+                                                        </Form>
+s
+                                                </Popup>
+                                                <button type="button" className="btn btn-danger" onClick={()=>this.deleteProduct(product.title)}>
+                                                    Delete
+                                                </button>
                                             </Card.Footer>
                                         </Card.Body>
 
@@ -67,38 +158,51 @@ class AdminDashboard extends Component{
                     <Col>
                         <h1 className="list-title text-center my-5 ml-4">Create product</h1>
                         <Form>
-                            <Form.Group as={Row} controlId="formControlID">
+                            <Form.Group as={Row} controlId="id">
                                 <Form.Label className="form-label" column sm={2}>
                                     ID :
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control type="number" placeholder="id"/>
+                                    <Form.Control type="number" placeholder="id" name="id" onChange={this.initProductField}/>
                                 </Col>
                             </Form.Group>
-                            <Form.Group as={Row} controlId="formControlTitle">
+                            <Form.Group as={Row} controlId="title">
                                 <Form.Label className="form-label" column sm={2}>
                                     Title:
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control type="text" placeholder="title"/>
+                                    <Form.Control type="text" placeholder="title" name="title" onChange={this.initProductField}/>
                                 </Col>
                             </Form.Group>
-                            <Form.Group as={Row} controlId="formControlCompany">
+                            <Form.Group as={Row} controlId="company">
                                 <Form.Label className="form-label" column sm={2}>
                                     Company:
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control type="text" placeholder="company"/>
+                                    <Form.Control type="text" name="company" placeholder="company" onChange={this.initProductField}/>
                                 </Col>
                             </Form.Group>
-                            <Form.Group as={Row} controlId="formControlPrice">
+                            <Form.Group as={Row} controlId="price">
                                 <Form.Label className="form-label" column sm={2}>
                                     Price:
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control type="number" placeholder="price"/>
+                                    <Form.Control type="number" name="price" placeholder="price" onChange={this.initProductField}/>
                                 </Col>
                             </Form.Group>
+                            <Form.Group as={Row} controlId="featured">
+                                <Col sm={{ span: 10, offset: 2 }}>
+                                    <Form.Check label="featured" name="featured" onChange={this.initProductField}/>
+                                </Col>
+                            </Form.Group>
+                            <div className="ml-5">
+                                <input type="file" onChange={this.fileSelectedHandler}/>
+                            </div>
+                            <button className="btn btn-secondary btn-create w-50"
+                                    onClick={()=>this.createProduct()}
+                            >
+                                Create
+                            </button>
                         </Form>
                     </Col>
                 </Row>

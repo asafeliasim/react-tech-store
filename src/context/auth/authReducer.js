@@ -1,5 +1,6 @@
 import{
     AUTH_ERROR,
+    UPDATE_PRODUCT,
     SET_CURRENT,
     CLEAR_CURRENT,
     REGISTER_SUCCESS,
@@ -42,7 +43,14 @@ export default (state,action) => {
                 user: null,
                 error: action.payload
             };
-
+        case UPDATE_PRODUCT:
+            return {
+                ...state,
+                products: state.products.map(p=>
+                    p._id === action.payload._id ? action.payload : p
+                ),
+                loading: false
+            };
         default:
             return state;
     }

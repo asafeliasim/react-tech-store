@@ -35,8 +35,8 @@ function App() {
         <Sidebar />
         <Alerts />
         <Switch>
-            <Route path="/" exact component={HomePage}/>
             <Route path="/dashboard" exact component={AdminDashboard}/>
+            <Route path="/" exact component={HomePage}/>
             <Route path="/register" exact component={Register}/>
             <Route path="/login" exact component={Login}/>
             <Route path="/about"  component={AboutPage}/>

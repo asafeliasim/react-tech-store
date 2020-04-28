@@ -10,5 +10,5 @@ export const LOGOUT = 'LOGOUT';
 export const USER_LOADED = 'USER_LOADED';
 export const CLEAR_ERROR = 'CLEAR_ERRORS';
 export const SET_ALERT = 'SET_ALERT';
-
+export const UPDATE_PRODUCT= "UPDATE_PRODUCT";
 
