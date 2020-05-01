@@ -40,8 +40,8 @@ function App() {
             <Route path="/register" exact component={Register}/>
             <Route path="/login" exact component={Login}/>
             <Route path="/about"  component={AboutPage}/>
-            <Route path="/contact"  component={ContactPage}/>/>
-            <Route path="/cart"  component={CartPage}/>/>
+            <Route path="/contact"  component={ContactPage}/>
+            <Route path="/cart"  component={CartPage}/>
             <Route path="/products" exact component={ProductsPage}/>
             <Route path="/" exact component={SingleProductPage}/>
             <Route path="/products/:id" exact component={SingleProductPage}/>

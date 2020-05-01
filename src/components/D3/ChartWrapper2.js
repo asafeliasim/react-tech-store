@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import D3Chart from './D3Diagram';
+import D3Chart from './D3CompanyDiagram';
 
 
 export default class ChartWrapper extends Component {
