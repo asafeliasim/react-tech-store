@@ -112,16 +112,14 @@ class ProductProvider extends Component {
         /*filtering based search input*/
         if(search.length > 0){
             tempProducts = tempProducts.filter(product => {
-               let tempSearch = search.toLowerCase();
+            let tempSearch = search.toLowerCase();
                // using slice to see that the letters is match
               // for example --> ip (search.length=2)--> ipo (3)--> ipho (4)--> iphon (5)--> iphone (6)--> iphonex
-               let tempTitle = product.title.toLowerCase()
-                   .slice(0,search.length);
-               if(tempSearch === tempTitle){
-                   return product;
-               }
-
-
+            let tempTitle = product.title.toLowerCase()
+            .slice(0,search.length);
+            if(tempSearch === tempTitle){
+            return product;
+            }
             });
         }
 
@@ -133,7 +131,7 @@ class ProductProvider extends Component {
     };
     // handle cart
     handleCart = () => {
-      this.setState({cartOpen:!this.state.cartOpen});
+    this.setState({cartOpen:!this.state.cartOpen});
     };
     //open cart
     openCart = () => {
@@ -145,22 +143,29 @@ class ProductProvider extends Component {
     };
 
     // close cart
-    closeCart = () => {
-      this.setState({cartOpen:false})
-    };
-    handleCountOfProduct = item => {
-        item.countOfBuy = item.countOfBuy+1;
+    closeCart = () => {this.setState({cartOpen:false})};
 
+    
+    handleCountOfProduct = item => {
+        const company = item.company;
+        item.countOfBuy = item.countOfBuy+1;   
         axios.patch(`http://localhost:3001/product/${item.title}`,{
             'countOfBuy': item.countOfBuy
         }).then(res=>{
-            console.log(res);
+            axios.get('http://localhost:3001/compeanies').then((res)=>{
+                const companies = res.data;
+                companies.map((c)=> {
+                    if(c.title === company){
+                    var sumofBuy = c.count++;
+                    axios.patch(`http://localhost:3001/companies/${c.title}`)
+                    }
+                })
+            })
         })
     };
 
     render() {
-        return(
-           <ProductContext.Provider value=
+        return(<ProductContext.Provider value=
                 {{  ...this.state,
                     handleSideBar: this.handleSideBar,
                     handleCart: this.handleCart,

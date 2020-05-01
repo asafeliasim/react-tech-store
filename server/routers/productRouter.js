@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const Product = require('../db/models/productModel');
 const router = new express.Router();
+const company = require('../db/models/companies');
 const fs = require('file-system');
 
 router.use(cors());
@@ -90,13 +91,44 @@ router.put("/api/update/:id",async(req,res)=>{
          res.status(400).json({msg:'product not found'});
       }
       product = await Product.findByIdAndUpdate(req.params.id,
-          {$set: productFields},
-          {new: true}
+         {$set: productFields},
+         {new: true}
          );
       res.json(product);
    }catch (e) {
       console.log(e.message);
       res.status(500).send('Server error');
+   }
+});
+
+
+router.get('/compeanies',async(req,res)=>{
+   try{
+      console.log('find compeanies');
+      const companies = await company.find({});
+   
+      if(!companies){
+         return res.status(401).send("companies not found");
+      }
+      res.status(201).json(companies);
+   }catch(e){
+         res.status(401).send({e:e.message});
+   }
+});
+
+router.patch('/companies/:title',async (req,res)=>{
+   const _title = req.params.title;
+   console.log(_title);
+   try{
+      const comp = await company.findOne({title:_title});
+      console.log(comp);
+      comp.count++;
+      comp.save().then(()=>{
+         res.status(201).send(comp);
+      });
+
+   }catch (e) {
+      res.status(401).send({e: e.message});
    }
 });
 module.exports = router;
