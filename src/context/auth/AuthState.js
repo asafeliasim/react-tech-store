@@ -46,10 +46,10 @@ const AuthState = props => {
     };
     //Register User
     const register = async formData => {
-   /*   const config = {
-          headers:{
-              'Content-Type' : 'application/json'
-          }
+    /*   const config = { 
+            headers:{
+         'Content-Type' : 'application/json'
+       }
       };*/
       try{
           console.log('try to post to server');
