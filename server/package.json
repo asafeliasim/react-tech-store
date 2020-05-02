@@ -23,6 +23,7 @@
     "cors": "^2.8.5",
     "currently": "0.0.8",
     "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
     "express-session": "^1.17.1",
     "express-validator": "^6.4.0",
     "file-system": "^2.2.2",

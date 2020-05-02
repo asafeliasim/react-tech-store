@@ -8,10 +8,8 @@ const UserRouter = require('./routers/userRouter');
 const user = require('./routers/userRoute');
 const auth = require('./routers/auth');
 const ProductRouter = require('./routers/productRouter');
-
 const apiRouter = require('./routers/api');
 const BranchRouter = require('./routers/branchRouter');
-
 
 /*end of models routers*/
 //const socketListener = require('./sockets/socketIO');
@@ -49,6 +47,8 @@ app.use('/static', express.static('public'));
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 
+
+
 app.get('/geocode/:address', (req, res) => {
 
    const address = req.params.address;
@@ -72,7 +72,6 @@ app.get('/geocode/:address', (req, res) => {
 
 const server = app.listen(PORT,()=>{
    console.log(`server connect is PORT: ${PORT} `);
-   console.log(__dirname)
 });
 
 //Socket setup

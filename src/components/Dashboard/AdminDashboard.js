@@ -4,18 +4,23 @@ import {Card,Container,Row,Col,Form,Button} from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 
 import './dash.css';
+import { utcMillisecond } from 'd3';
 
 class AdminDashboard extends Component{
-    state={
-        products:[],
-        id: Number,
-        title:'',
-        company:'',
-        price: Number,
-        featured: Boolean,
-        selectedFile: null
-    };
-
+    constructor(props){
+        super(props);
+        this.state={
+            products:[],
+            id: Number,
+            title:'',
+            company:'',
+            price: Number,
+            featured: Boolean,
+            selectedFile: null,
+            
+        };
+    }
+    
     componentDidMount() {
         axios.get('http://localhost:3001/productsApi')
             .then((resp) => {
@@ -61,9 +66,9 @@ class AdminDashboard extends Component{
         const company = this.state.company ? this.state.company : product.company;
         const price = this.state.price ? this.state.price : product.price;
         const req = {
-          title,
-          company,
-          price
+                title,
+                company,
+                price
         };
         const res = await axios.patch(`http://localhost:3001/product/${product.title}`,req);
         console.log(res);
@@ -75,26 +80,49 @@ class AdminDashboard extends Component{
         e.preventDefault();
     };
     async createProduct(){
-      const id = this.state.id;
-      const title = this.state.title;
-      const company = this.state.company;
-      const price = this.state.price;
-      const img = `../img/${this.state.title}.jpg`;
-      const product = {
-          id,
-          title,
-          company,
-          price,
-          img
-      };
-      console.log(product);
+    const id = this.state.id;
+    const title = this.state.title;
+    const company = this.state.company;
+    const price = this.state.price;
+    const img = `../img/${this.state.title}.jpg`;
+    const product = {
+        id,
+        title,
+        company,
+        price,
+        img
+        };
+        console.log(product);
     const p = await axios.post(`http://localhost:3001/product`,product);
     console.log(p);
     };
     fileSelectedHandler = e => {
-      this.setState({
-          selectedFile: e.target.files[0]
-      })
+      /*  this.setState({
+            selectedFile: e.target.files[0]
+        },()=>{
+            console.log(this.state.selectedFile);        
+            const formData = new FormData();
+            formData.append(this.state.selectedFile,'file');
+            
+        });
+        */
+       const files = Array.from(e.target.files);
+       const FormData = new FormData();
+       files.forEach((file,i)=>{
+         FormData.append(i,file);
+       });
+       console.log(FormData)
+        
+    };
+
+    uploadImage = async e =>{
+
+        var file = this.state.selectedFile;
+        console.log(file);
+        let formData = new FormData();
+        formData.append('file',file);
+        const res = await axios.post('http://localhost:3001/img/upload',formData)
+        .then(()=>console.log(res))
     };
     render() {
         console.log(this.state);
@@ -111,17 +139,17 @@ class AdminDashboard extends Component{
                                             <Card.Title className="product-title">{product.title}</Card.Title>
                                             <Card.Text>
                                                 <p>{product.company}</p>
-                                                <p>$ {product.price}</p>
+                                                <p>${product.price}</p>
                                             </Card.Text>
                                             <Card.Footer>
                                                 <Popup trigger={<button type="button" className="btn btn-primary mr-4">Edit</button>}
-                                                       position="right center">
+                                                        position="right center">
                                                     <Form className="popup">
                                                         <Form.Group as={Row} controlId="title">
                                                                 <Form.Control type="text"
-                                                                              placeholder="title"
-                                                                              name="title"
-                                                                              onChange={this.changeFieldProduct}/>
+                                                                                placeholder="title"
+                                                                                name="title"
+                                                                                onChange={this.changeFieldProduct}/>
                                                         </Form.Group>
                                                         <Form.Group as={Row} controlId="company">
                                                                 <Form.Control type="text"
@@ -195,21 +223,20 @@ s
                                     <Form.Check label="featured" name="featured" onChange={this.initProductField}/>
                                 </Col>
                             </Form.Group>
-                            <div className="ml-5">
-                                <input type="file" onChange={this.fileSelectedHandler}/>
-                            </div>
                             <button className="btn btn-secondary btn-create w-50"
                                     onClick={()=>this.createProduct()}
                             >
                                 Create
                             </button>
                         </Form>
+                        <div className="ml-5">
+                                <input ref={(ref)=>{this.uploadImage = ref;}} type="file" name="file" onChange={(e)=>this.fileSelectedHandler(e)}/>
+                            </div>
+                            <button className="btn btn-primary" onClick={this.uploadImage}>upload</button>
                     </Col>
                 </Row>
-
-
             </Container>
-         )
+        )
     }
 
 }

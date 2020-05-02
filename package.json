@@ -10,9 +10,11 @@
     "bingmaps": "^2.0.3",
     "bootstrap": "^4.4.1",
     "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
     "currently": "0.0.8",
     "d3": "^5.15.1",
     "express-session": "^1.17.0",
+    "form-data": "^3.0.0",
     "google-maps-react": "^2.0.2",
     "http-proxy-middleware": "^0.21.0",
     "i": "^0.3.6",
@@ -25,6 +27,7 @@
     "react-admin": "^3.3.1",
     "react-bingmaps": "^3.6.1",
     "react-bootstrap": "^1.0.1",
+    "react-canvas-js": "^1.0.1",
     "react-chat-window": "^1.2.1",
     "react-dom": "^16.13.0",
     "react-facebook": "^8.1.4",
@@ -38,7 +41,8 @@
     "react-spring": "^8.0.27",
     "reactjs-popup": "^1.5.0",
     "styled-components": "^5.0.1",
-    "uuid": "^7.0.3"
+    "uuid": "^7.0.3",
+    "video-react": "^0.14.1"
   },
   "scripts": {
     "start": "react-scripts start",

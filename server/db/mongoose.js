@@ -7,7 +7,7 @@ mongoose.connect(URL_DB,{
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false
-});
+}).then(()=>console.log('connect to DB'));
 
 
 

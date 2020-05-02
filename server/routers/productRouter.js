@@ -4,8 +4,13 @@ const Product = require('../db/models/productModel');
 const router = new express.Router();
 const company = require('../db/models/companies');
 const fs = require('file-system');
+const multer = require('multer');
+
 
 router.use(cors());
+
+
+
 router.post('/product',async (req,res) => {
    console.log(req.body);
    const product = await new Product(req.body);
@@ -35,6 +40,7 @@ router.get('/product/:title',async(req,res)=>{
    }
 });
 router.get('/products', async (req,res)=>{
+   console.log('get products');
    try{
       const products = await Product.find({});
       if(!products){
@@ -131,4 +137,31 @@ router.patch('/companies/:title',async (req,res)=>{
       res.status(401).send({e: e.message});
    }
 });
+
+router.post('/img/upload',(req,res)=>{
+   console.log('try to upload');
+   if(req.files === null){
+      return res.status(400).json({msg:'no file uploaded'})
+   }
+   const file = req.files.file;
+   file.mv(`../public/img/${file.name}`, err =>{
+      if(err){
+         console.log(err)
+         return res.status(500).send(err);
+      }
+      res.json({})
+   })
+});
 module.exports = router;
+/*router.post('/img/upload',function(req,res){
+   upload(req,res,function(err){
+      console.log(req);
+      if(err instanceof multer.MulterError){
+         return res.status(500).json(err);
+      }else if(err){
+         return res.status(500).send(err);
+      }
+      return res.status.send(req.file);
+   });
+});*/
+
