@@ -152,6 +152,21 @@ router.post('/img/upload',(req,res)=>{
       res.json({})
    })
 });
+
+// group by company 
+router.get('/products/:company',async(req,res)=>{
+   
+   const docs = Product.aggregate([
+      {$match: {company: req.params.company}},
+      {$group: {_id:null, "totalProductsFromCompany":{$sum:1}}}
+   ],(aggregateError,aggregateResult)=>{
+      const num = aggregateResult[0];
+      res.send(num);
+   }
+   )
+});
+
+
 module.exports = router;
 /*router.post('/img/upload',function(req,res){
    upload(req,res,function(err){

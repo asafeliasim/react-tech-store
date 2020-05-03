@@ -42,14 +42,14 @@ router.patch('/branch/:address',async(req,res)=>{
         res.status(500).send(e);
     }
 });
-router.delete('/branch/:title', async (req,res)=>{
+router.delete('/branch/:address', async (req,res)=>{
     try{
-        const _title = req.params.title;
-        const branch = await BranchModel.findOneAndDelete({title:_title});
+        const _address = req.params.address;
+        const branch = await BranchModel.findOneAndDelete({address:_address});
         if(!branch){
             return res.send("BranchModel isn't exist");
         }
-        res.status(200).send(`${_title} has deleted`);
+        res.status(200).send(`${_address} has deleted`);
     }catch (e) {
         res.status(500).send(e);
     }
