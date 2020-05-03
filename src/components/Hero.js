@@ -4,10 +4,10 @@ import mainBcg from '../images/mainBcg.jpeg'
 
 export default function Hero({img, title, max,children}){
     return <HeroWrapper max={max} img={img}>
-        <div className="banner">
+        <header className="banner">
             <h1 className="title">{title}</h1>
             {children}
-        </div>
+        </header>
     </HeroWrapper>
 }
 const HeroWrapper = styled.div`

@@ -15,7 +15,7 @@ const Login=(props)=>{
         if(error === 'Invalid Credentials'){
             setAlert(error,'danger');
         }
-        if(email === 'asafeliasim@gmail.com'){
+        if(email === 'admin@gmail.com'){
             props.history.push('/dashboard');
         }
 

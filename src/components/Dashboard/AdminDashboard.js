@@ -2,7 +2,7 @@ import React,{Component,useContext} from 'react';
 import axios from 'axios';
 import {Card,Container,Row,Col,Form,Button} from 'react-bootstrap';
 import Popup from 'reactjs-popup';
-
+import DevicesDash from './DevicesDash';
 import './dash.css';
 import { utcMillisecond } from 'd3';
 
@@ -16,7 +16,7 @@ class AdminDashboard extends Component{
             company:'',
             price: Number,
             featured: Boolean,
-            selectedFile: null,
+            selectedFile: null
             
         };
     }
@@ -231,8 +231,8 @@ s
                         </Form>
                         <div className="ml-5">
                                 <input ref={(ref)=>{this.uploadImage = ref;}} type="file" name="file" onChange={(e)=>this.fileSelectedHandler(e)}/>
-                            </div>
-                            <button className="btn btn-primary" onClick={this.uploadImage}>upload</button>
+                        </div>
+                        <DevicesDash/>                            
                     </Col>
                 </Row>
             </Container>

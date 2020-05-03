@@ -11,6 +11,7 @@
   --mainTransition: all 0.3s ease-in-out;
   --mainSpacing: 0.3rem;
 }
+
 .text-title{
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;

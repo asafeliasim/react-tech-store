@@ -1,0 +1,20 @@
+@font-face{
+    font-family: tech-font;
+    src: url('../../asserts/fonts/Pacifico-Regular.ttf');
+}
+.first-p{
+    font-family: tech-font;
+}
+aside {
+    width: 40%;
+    padding-left: .5rem;
+    margin-left: .5rem;
+    float: right;
+    box-shadow: inset 5px 0 5px -5px #29627e;
+    font-style: italic;
+    color: #29627e;
+}
+
+aside > p {
+    margin: .5rem;
+}

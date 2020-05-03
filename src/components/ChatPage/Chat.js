@@ -75,15 +75,14 @@ const Chat = () =>{
                     {allMessages}
                 </div>
             </div>
-            <div className="feed-back">
-              
+            <div className="feed-back">   
             </div>
         </div>
         <div className="row justify-content-center mt-5">
-             <form className="message-input form-group my-auto mb-4" onSubmit={handleSubmit}>
-                   <input type="text" className="form-control" ref={messageInputRef} placeholder="message" id="message"  onChange={messageChange}/>
-                   <button type="submit" className="btn btn-send">Send</button>
-             </form>
+            <form className="message-input form-group my-auto mb-4" onSubmit={handleSubmit}>
+                <input type="text" className="form-control" ref={messageInputRef} placeholder="message" id="message"  onChange={messageChange}/>
+                <button type="submit" className="btn btn-send">Send</button>
+            </form>
         </div>
         </>
 
