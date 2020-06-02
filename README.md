@@ -5,7 +5,7 @@ An Mern-satck project i did during last semester.
 
 A information web-site about an technological instruments.
 The project build with the following characteristics :
--Reactjs in the client side, nodejs in the server connect to mongoDB 
+- Reactjs in the client side, nodejs in the server connect to mongoDB 
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br />
