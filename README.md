@@ -27,7 +27,7 @@ The project build with the following characteristics :
 - Mongoose - npm package helps you integrated eaisly with mongoDB in the server.
 - React-D3 - is a react library - using for build graph, canvas and using statics. 
 
-## Colleagueדs
+## Colleagues
 https://github.com/lidorm <br/>
 https://github.com/noyfruman <br/>
 https://github.com/butbulyuval
