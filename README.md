@@ -1,5 +1,5 @@
 
-### 'Tech-Srore-APP'
+### Tech-Srore-APP
 
 An Mern-satck project i did during last semester.
 
@@ -12,3 +12,6 @@ The project build with the following characteristics :
 - HTML5 including: Video, Canvas, Aside, Footer, Header, Nav, Section and etc.
 - CSS3 including: Text-shadow, Transition, Multiple-columns, Font-face, Border-radius and etc.
 
+https://ae-tech-store.netlify.app/
+
+![](src/images/mainBcg.jpeg)
