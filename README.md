@@ -12,7 +12,6 @@ The project build with the following characteristics :
 - HTML5 including: Video, Canvas, Aside, Footer, Header, Nav, Section and etc.
 - CSS3 including: Text-shadow, Transition, Multiple-columns, Font-face, Border-radius and etc.
 
-https://ae-tech-store.netlify.app/
 
 ![](src/images/aboutBcg.jpeg)
 
@@ -27,4 +26,10 @@ https://ae-tech-store.netlify.app/
 - Bootstarp 4 - a small JavaScript library which helps you build html blocks with conformed CSS.
 - Mongoose - npm package helps you integrated eaisly with mongoDB in the server.
 - React-D3 - is a react library - using for build graph, canvas and using statics. 
+
+## Colleagueדs
+https://github.com/lidorm
+https://github.com/noyfruman
+https://github.com/butbulyuval
+
     
