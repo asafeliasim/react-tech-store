@@ -1,7 +1,7 @@
 
 ### Tech-Srore-APP
 
-An Mern-satck project i did during last semester.
+An Mern-satck project we did during last semester.
 
 A information web-site about an technological instruments.
 The project build with the following characteristics :
