@@ -28,7 +28,7 @@ The project build with the following characteristics :
 - React-D3 - is a react library - using for build graph, canvas and using statics. 
 
 ## Colleagueדs
-https://github.com/lidorm
+https://github.com/lidorm <br/>
 https://github.com/noyfruman
 https://github.com/butbulyuval
 
