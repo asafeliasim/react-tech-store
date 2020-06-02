@@ -21,4 +21,10 @@ https://ae-tech-store.netlify.app/
 - Beautiful and user-friendly interface.
 - Used Facebook API in order to make more ways to login to the website.
 - The site also supports a page where statistics about the favorite device. 
+
+## Tech 
+- React -  is a free and js library.
+- Bootstarp 4 - a small JavaScript library which helps you build html blocks with conformed CSS.
+- Mongoose - npm package helps you integrated eaisly with mongoDB in the server.
+- React-D3 - is a react library - using for build graph, canvas and using statics. 
     
