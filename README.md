@@ -14,4 +14,11 @@ The project build with the following characteristics :
 
 https://ae-tech-store.netlify.app/
 
-![](src/images/mainBcg.jpeg)
+![](src/images/aboutBcg.jpeg)
+
+## Key Features 
+- Integrated with Facebook, GoogleMaps and some Weather API.
+- Beautiful and user-friendly interface.
+- Used Facebook API in order to make more ways to login to the website.
+- The site also supports a page where statistics about the favorite device. 
+    
